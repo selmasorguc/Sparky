@@ -69,5 +69,21 @@ namespace SparkyNUnitTest
             //ASSERT
             Assert.AreEqual(15.9, result, .2); //15.7 - 16.1
         }
+
+        [Test]
+        public void OddRanger_InputMinAndMaxRange_ReturnsValidOddNumberRange()
+        {
+            Calculator calc = new();
+            List<int> expectedOddRange = new() { 5, 7, 9 };//5-10
+
+            List<int> result = calc.GetOddRange(5, 10);
+
+            Assert.That(result, Is.EquivalentTo(expectedOddRange));
+            Assert.AreEqual( expectedOddRange, result);
+            Assert.Contains(7, result);
+            Assert.That(result, Does.Contain(7));
+            Assert.That(result, Is.Not.Empty);
+            Assert.That(result.Count, Is.EqualTo(3));
+        }
     }
 }
