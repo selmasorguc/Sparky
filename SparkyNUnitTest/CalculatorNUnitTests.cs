@@ -1,14 +1,9 @@
-﻿using NUnit.Framework;
-using Sparky;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-namespace SparkyNUnitTest
+﻿namespace SparkyNUnitTest
 {
+    using NUnit.Framework;
+    using Sparky;
+    using System.Collections.Generic;
+
     [TestFixture]
     class CalculatorNUnitTests
     {
@@ -53,7 +48,6 @@ namespace SparkyNUnitTest
             return calc.IsOddNumber(a);
         }
 
-
         [Test]
         [TestCase(5.4, 10.5)] //15.9
         [TestCase(5.43, 10.53)] //15.93
@@ -64,7 +58,7 @@ namespace SparkyNUnitTest
             Calculator calc = new();
 
             //ACT
-            double result = calc.AddNumbersDouble(a,b);
+            double result = calc.AddNumbersDouble(a, b);
 
             //ASSERT
             Assert.AreEqual(15.9, result, .2); //15.7 - 16.1
@@ -79,11 +73,13 @@ namespace SparkyNUnitTest
             List<int> result = calc.GetOddRange(5, 10);
 
             Assert.That(result, Is.EquivalentTo(expectedOddRange));
-            Assert.AreEqual( expectedOddRange, result);
+            Assert.AreEqual(expectedOddRange, result);
             Assert.Contains(7, result);
             Assert.That(result, Does.Contain(7));
             Assert.That(result, Is.Not.Empty);
             Assert.That(result.Count, Is.EqualTo(3));
+            Assert.That(result, Has.No.Member(6));
+            Assert.That(result, Is.Ordered);
         }
     }
 }
