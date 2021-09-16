@@ -13,7 +13,8 @@
 
         public bool Deposit(int amount)
         {
-            _logBook.Message("Deposit invoked");
+            _logBook.Message("Deposit invoked"); //true
+            _logBook.Message(""); //false
             Balance += amount;
             return true;
         }
@@ -22,10 +23,11 @@
         {
             if (amount <= Balance)
             {
+                _logBook.LogToDb("Withdrawl amount: " + amount.ToString());
                 Balance -= amount;
-                return true;
+                return _logBook.LogBalanceAfterWithdrawl(Balance);
             }
-            return false;
+            return _logBook.LogBalanceAfterWithdrawl(Balance - amount); ;
         }
 
         public int GetBalance()
